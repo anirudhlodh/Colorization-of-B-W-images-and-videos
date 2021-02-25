@@ -1,5 +1,5 @@
 # USAGE
-# python3 bw2color_image.py --image images/albert_einstein.jpg --prototxt model/colorization_deploy_v2.prototxt --model model/colorization_release_v2.caffemodel --points model/pts_in_hull.npy
+# python3 bw2color_image.py --image images/mark_twain.jpg --prototxt model/colorization_deploy_v2.prototxt --model model/colorization_release_v2.caffemodel --points model/pts_in_hull.npy
 
 # import the necessary packages
 import numpy as np
