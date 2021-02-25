@@ -59,27 +59,58 @@ def main():
 
     st.title("COLORIZE!!!")
 
-    html_temp = """
-    <body style="background-color:red;">
-    <div style="background-color:teal ;padding:10px">
-    <h2 style="color:white;text-align:center;">Colorization of B/W images</h2>
-    </div>
-    </body>
-    """
-    st.markdown(html_temp, unsafe_allow_html=True)
+    activities = ["Image","Video","About"]
+    choice = st.sidebar.selectbox("Choose what you want to Colorize.",activities)
 
-    image_file = st.file_uploader("Upload Image", type=['jpg', 'png', 'jpeg'])
-    if image_file is not None:
-        our_image = Image.open(image_file)
-        st.text("Original Image")
-        st.image(our_image)
-        if st.button("COLORIZE!!"):
-            result_img= colorize_image(our_image)
-            st.image(result_img)
+    if choice == "Image":
+        html_temp = """
+        <body style="background-color:red">
+        <div style="background-color:teal ;padding:10px">
+        <h2 style="color:white;text-align:center;">Colorization of B/W images</h2>
+        <h3 style="color:white;text-align:center;"><div>BY </div> 
+        <span>Anirudh Lodh, </span>
+        <span> Utkarsh Saxena,</span>
+        <span> ,Ajmal Khan</span>
+        <span> ,Himey Patel</span>
+        </div>
+        </body>
+        """
+        st.markdown(html_temp, unsafe_allow_html=True)
+
+        image_file = st.file_uploader("Upload Image", type=['jpg', 'png', 'jpeg'])
+        if image_file is not None:
+            our_image = Image.open(image_file)
+            st.text("Original Image")
+            st.image(our_image)
+            if st.button("COLORIZE!!"):
+                result_img= colorize_image(our_image)
+                st.image(result_img)
     
-    else :
-        st.text('Please select an image first!!')
+        else :
+            st.text('Please select an image first!!')
 
+    elif choice == "Video" :
+        html_temp = """
+        <body style="background-color:red;">
+        <div style="background-color:teal ;padding:10px">
+        <h2 style="color:white;text-align:center;">Colorization of B/W videos</h2>
+        <h3 style="color:white;text-align:center;"><div>BY </div> 
+        <span>Anirudh Lodh, </span>
+        <span> Utkarsh Saxena,</span>
+        <span> ,Ajmal Khan</span>
+        <span> ,Himey Patel</span>
+        </div>
+        </body>
+        """
+        st.markdown(html_temp, unsafe_allow_html=True)
+        vid_obj = cv2.VideoCapture(0) 
+        success = True
 
+        frame = st.empty()
+
+        while success:
+            success, image = vid_obj.read()
+            bboxed_image = calculate_bounding_box(image)
+            frame.image(bboxed_image, channels="BGR")
 if __name__ == '__main__':
     main()
